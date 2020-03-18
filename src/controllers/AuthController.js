@@ -1,0 +1,25 @@
+import AuthService from '../services/AuthService'
+
+const signup = async ctx => {
+  const { email, password } = ctx.request.body
+  
+  if (!email) throw new Error('Email é obrigatório')
+  if (!password) throw new Error('Password é obrigatório')
+  
+  const auth = await AuthService.signup({ data: ctx.request.body })
+
+  ctx.body = auth
+}
+
+const login = async ctx => {
+  const { email, password } = ctx.request.body
+  
+  if (!email) throw new Error('Email é obrigatório')
+  if (!password) throw new Error('Password é obrigatório')
+
+  const auth = await AuthService.login({ email, password })
+
+  ctx.body = auth
+}
+
+export default { signup, login }
