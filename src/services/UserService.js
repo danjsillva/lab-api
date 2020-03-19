@@ -25,13 +25,13 @@ const update = async ({ id, data }) => {
     data.password = Bcrypt.hashSync(data.password, 10);
   }
 
-  const user = await User.findByIdAndUpdate(id, data)
+  const user = await User.findByIdAndUpdate(id, data, { new: true })
 
   return user
 }
 
 const destroy = async ({ id }) => {
-  const user = await User.findByIdAndUpdate(id, { deleted: true })
+  const user = await User.findByIdAndUpdate(id, { deleted: true }, { new: true })
 
   return user
 }

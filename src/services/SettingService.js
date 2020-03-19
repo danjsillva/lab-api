@@ -7,7 +7,7 @@ const show = async () => {
 }
 
 const update = async ({ data }) => {
-  const setting = await Setting.findOneAndUpdate({}, data)
+  const setting = await Setting.findOneAndUpdate({}, data, { new: true })
 
   return setting
 }
