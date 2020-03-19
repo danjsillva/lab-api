@@ -22,10 +22,4 @@ const login = async ctx => {
   ctx.body = auth
 }
 
-const logout = async ctx => {
-  const auth = await AuthService.logout({ email, password })
-
-  ctx.body = auth
-}
-
-export default { signup, login, logout }
+export default { signup, login }

@@ -25,8 +25,4 @@ const login = async ({ email, password }) => {
   return { user, token }
 }
 
-const logout = async ({ email, password }) => {
-
-}
-
-export default { signup, login, logout }
+export default { signup, login }
