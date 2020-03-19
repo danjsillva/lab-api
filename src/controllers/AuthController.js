@@ -1,25 +1,25 @@
-import AuthService from '../services/AuthService'
+import AuthService from "../services/AuthService";
 
 const signup = async ctx => {
-  const data = ctx.request.body
-  
-  if (!data.email) throw new Error('Email é obrigatório')
-  if (!data.password) throw new Error('Password é obrigatório')
-  
-  const auth = await AuthService.signup({ data })
+  const data = ctx.request.body;
 
-  ctx.body = auth
-}
+  if (!data.email) throw new Error("Email é obrigatório");
+  if (!data.password) throw new Error("Password é obrigatório");
+
+  const auth = await AuthService.signup({ data });
+
+  ctx.body = auth;
+};
 
 const login = async ctx => {
-  const { email, password } = ctx.request.body
-  
-  if (!email) throw new Error('Email é obrigatório')
-  if (!password) throw new Error('Password é obrigatório')
+  const { email, password } = ctx.request.body;
 
-  const auth = await AuthService.login({ email, password })
+  if (!email) throw new Error("Email é obrigatório");
+  if (!password) throw new Error("Password é obrigatório");
 
-  ctx.body = auth
-}
+  const auth = await AuthService.login({ email, password });
 
-export default { signup, login }
+  ctx.body = auth;
+};
+
+export default { signup, login };

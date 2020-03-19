@@ -1,39 +1,43 @@
-import Bcrypt from 'bcrypt'
+import Bcrypt from "bcrypt";
 
-import User from '../models/User'
+import User from "../models/User";
 
 const index = async () => {
-  const users = await User.find()
+  const users = await User.find();
 
-  return users
-}
+  return users;
+};
 
 const show = async ({ id }) => {
-  const user = await User.findById(id)
+  const user = await User.findById(id);
 
-  return user
-}
+  return user;
+};
 
 const store = async ({ data }) => {
-  const user = await User.create(data)
+  const user = await User.create(data);
 
-  return user
-}
+  return user;
+};
 
 const update = async ({ id, data }) => {
   if (data.password) {
     data.password = Bcrypt.hashSync(data.password, 10);
   }
 
-  const user = await User.findByIdAndUpdate(id, data, { new: true })
+  const user = await User.findByIdAndUpdate(id, data, { new: true });
 
-  return user
-}
+  return user;
+};
 
 const destroy = async ({ id }) => {
-  const user = await User.findByIdAndUpdate(id, { deleted: true }, { new: true })
+  const user = await User.findByIdAndUpdate(
+    id,
+    { deleted: true },
+    { new: true }
+  );
 
-  return user
-}
+  return user;
+};
 
-export default { index, show, store, update, destroy }
+export default { index, show, store, update, destroy };

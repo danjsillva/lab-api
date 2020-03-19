@@ -1,35 +1,37 @@
-import Bcrypt from 'bcrypt'
-
-import Course from '../models/Course'
+import Course from "../models/Course";
 
 const index = async () => {
-  const courses = await Course.find()
+  const courses = await Course.find();
 
-  return courses
-}
+  return courses;
+};
 
 const show = async ({ id }) => {
-  const course = await Course.findById(id)
+  const course = await Course.findById(id);
 
-  return course
-}
+  return course;
+};
 
 const store = async ({ data }) => {
-  const course = await Course.create(data)
+  const course = await Course.create(data);
 
-  return course
-}
+  return course;
+};
 
 const update = async ({ id, data }) => {
-  const course = await Course.findByIdAndUpdate(id, data, { new: true })
+  const course = await Course.findByIdAndUpdate(id, data, { new: true });
 
-  return course
-}
+  return course;
+};
 
 const destroy = async ({ id }) => {
-  const course = await Course.findByIdAndUpdate(id, { deleted: true }, { new: true })
+  const course = await Course.findByIdAndUpdate(
+    id,
+    { deleted: true },
+    { new: true }
+  );
 
-  return course
-}
+  return course;
+};
 
-export default { index, show, store, update, destroy }
+export default { index, show, store, update, destroy };

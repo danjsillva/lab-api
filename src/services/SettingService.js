@@ -1,15 +1,15 @@
-import Setting from '../models/Setting'
+import Setting from "../models/Setting";
 
 const show = async () => {
-  const setting = await Setting.findOne()
+  const setting = await Setting.findOne();
 
-  return setting
-}
+  return setting;
+};
 
 const update = async ({ data }) => {
-  const setting = await Setting.findOneAndUpdate({}, data, { new: true })
+  const setting = await Setting.findOneAndUpdate({}, data, { new: true });
 
-  return setting
-}
+  return setting;
+};
 
-export default { show, update }
+export default { show, update };

@@ -1,42 +1,42 @@
-import UserService from '../services/UserService'
+import UserService from "../services/UserService";
 
 const index = async ctx => {
-  const users = await UserService.index()
+  const users = await UserService.index();
 
-  ctx.body = users
-}
+  ctx.body = users;
+};
 
 const show = async ctx => {
-  const id = ctx.params.id
-  
-  const user = await UserService.show({ id })
+  const id = ctx.params.id;
 
-  ctx.body = user
-}
+  const user = await UserService.show({ id });
+
+  ctx.body = user;
+};
 
 const store = async ctx => {
-  const data = ctx.request.body
+  const data = ctx.request.body;
 
-  const user = await UserService.store({ data })
+  const user = await UserService.store({ data });
 
-  ctx.body = user
-}
+  ctx.body = user;
+};
 
 const update = async ctx => {
-  const id = ctx.params.id
-  const data = ctx.request.body
+  const id = ctx.params.id;
+  const data = ctx.request.body;
 
-  const user = await UserService.update({ id, data })
+  const user = await UserService.update({ id, data });
 
-  ctx.body = user
-}
+  ctx.body = user;
+};
 
 const destroy = async ctx => {
-  const id = ctx.params.id
+  const id = ctx.params.id;
 
-  const user = await UserService.destroy({ id })
+  const user = await UserService.destroy({ id });
 
-  ctx.body = user
-}
+  ctx.body = user;
+};
 
-export default { index, show, store, update, destroy }
+export default { index, show, store, update, destroy };
