@@ -1,17 +1,13 @@
 import Koa from 'koa'
 import Dotenv from 'dotenv'
 import BodyParser from 'koa-bodyparser'
-import Mongoose from 'mongoose'
 
+import Database from './config/database'
 import ErrorMiddleware from './middlewares/ErrorMiddleware'
 import Routes from './router'
 
 Dotenv.config()
-
-Mongoose.connect(process.env.MONGO_CONNECTION, {
-  useNewUrlParser: true, 
-  useUnifiedTopology: true
-});
+Database.connect()
 
 const app = new Koa();
 

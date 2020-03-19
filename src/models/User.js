@@ -1,8 +1,16 @@
 import Mongoose from 'mongoose'
 
-const User = Mongoose.model('User', { 
-  email: String, 
-  password: String 
-});
+const User = Mongoose.model('User',
+  Mongoose.Schema({ 
+    email: String, 
+    password: String,
+    deleted: Boolean,
+    createdAt: Date,
+    updatedAt: Date
+  },
+  {
+    timestamps: true
+  })
+);
 
 export default User

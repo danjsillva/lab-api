@@ -1,7 +1,5 @@
 import JWT from 'jsonwebtoken'
 
-import User from '../models/User'
-
 const AuthMiddleware = async (ctx, next) => {	
 	if (!ctx.request.header || !ctx.request.header.authorization) throw new Error('Token de autenticação é obrigatório')
 

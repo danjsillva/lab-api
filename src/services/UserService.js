@@ -1,33 +1,39 @@
+import Bcrypt from 'bcrypt'
+
 import User from '../models/User'
 
 const index = async () => {
-  try {
-    const users = await User.find()
+  const users = await User.find()
 
-    return users
-  } catch (error) {
-    console.log(error)
-  }
+  return users
 }
 
 const show = async ({ id }) => {
-  try {
-    const user = await User.findById(id)
+  const user = await User.findById(id)
 
-    return user
-  } catch (error) {
-    console.log(error)
-  }
+  return user
 }
 
 const store = async ({ data }) => {
-  const existingUser = await User.findOne({ email: data.email })
+  const user = await User.create(data)
 
-  if (!existingUser) {
-    const user = await User.create(user)
-
-    return user
-  }
+  return user
 }
 
-export default { index, show, store }
+const update = async ({ id, data }) => {
+  if (data.password) {
+    data.password = Bcrypt.hashSync(data.password, 10);
+  }
+
+  const user = await User.findByIdAndUpdate(id, data)
+
+  return user
+}
+
+const destroy = async ({ id }) => {
+  const user = await User.findByIdAndUpdate(id, { deleted: true })
+
+  return user
+}
+
+export default { index, show, store, update, destroy }
