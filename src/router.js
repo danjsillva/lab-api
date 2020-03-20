@@ -12,6 +12,7 @@ router.get("/", ctx => (ctx.body = "Hello World!"));
 
 router.post("/auth/signup", AuthController.signup);
 router.post("/auth/login", AuthController.login);
+router.get("/auth/login", AuthMiddleware, AuthController.check);
 
 router.get("/settings", AuthMiddleware, SettingController.show);
 router.patch("/settings", AuthMiddleware, SettingController.update);

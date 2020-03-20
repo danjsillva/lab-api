@@ -11,7 +11,10 @@ const AuthMiddleware = async (ctx, next) => {
   const [, token] = ctx.request.header.authorization.split(" ");
 
   try {
-    ctx.auth = await JWT.verify(token, process.env.JWT_SECRET);
+    ctx.auth = {
+      token,
+      id: JWT.verify(token, process.env.JWT_SECRET)
+    };
   } catch (error) {
     throw {
       status: 401,

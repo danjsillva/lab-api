@@ -3,6 +3,12 @@ import AuthService from "../services/AuthService";
 const signup = async ctx => {
   const data = ctx.request.body;
 
+  if (!data.name)
+    throw {
+      status: 400,
+      code: "NAME_REQUIRED",
+      message: "Nome é obrigatório"
+    };
   if (!data.email)
     throw {
       status: 400,
@@ -42,4 +48,10 @@ const login = async ctx => {
   ctx.body = auth;
 };
 
-export default { signup, login };
+const check = async ctx => {
+  const auth = await AuthService.check({ auth: ctx.auth });
+
+  ctx.body = auth;
+};
+
+export default { signup, login, check };

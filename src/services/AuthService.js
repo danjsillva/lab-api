@@ -29,13 +29,21 @@ const login = async ({ email, password }) => {
       message: "Email não econtrado"
     };
   if (!Bcrypt.compareSync(password, user.password))
-    throw { status: 404, code: "EMAIL_NOT_FOUND", message: "Senha incorreta" };
+    throw {
+      status: 404,
+      code: "INCORRECT_PASSWORD",
+      message: "Senha incorreta"
+    };
 
-  const token = JWT.sign(user.toJSON(), process.env.JWT_SECRET, {
-    expiresIn: 604800
-  });
+  const token = JWT.sign(user.toJSON()._id.toJSON(), process.env.JWT_SECRET);
 
   return { user, token };
 };
 
-export default { signup, login };
+const check = async ({ auth }) => {
+  const user = await User.findById(auth.id);
+
+  return { user, token: auth.token };
+};
+
+export default { signup, login, check };
