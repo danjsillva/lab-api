@@ -4,12 +4,11 @@ const ErrorMiddleware = async (ctx, next) => {
   } catch (error) {
     console.log(error);
 
-    ctx.status = 500;
+    ctx.status = error.status || 500;
     ctx.body = {
-      error: {
-        message: error.message,
-        type: error.name
-      }
+      status: error.status || 500,
+      code: error.code || "INTERNAL_SERVER_ERROR",
+      message: error.message || "Ocorreu um erro inesperado"
     };
   }
 };

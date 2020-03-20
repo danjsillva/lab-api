@@ -6,7 +6,12 @@ import User from "../models/User";
 const signup = async ({ data }) => {
   const existingUser = await User.findOne({ email: data.email });
 
-  if (existingUser) throw new Error("Este email já está cadastrado");
+  if (existingUser)
+    throw {
+      status: 409,
+      code: "ALREADY_REGISTERED",
+      message: "Este email já está cadastrado"
+    };
 
   data.password = Bcrypt.hashSync(data.password, 10);
   const user = await User.create(data);
@@ -17,9 +22,14 @@ const signup = async ({ data }) => {
 const login = async ({ email, password }) => {
   const user = await User.findOne({ email, deleted: { $ne: true } });
 
-  if (!user) throw new Error("Email não econtrado");
+  if (!user)
+    throw {
+      status: 404,
+      code: "EMAIL_NOT_FOUND",
+      message: "Email não econtrado"
+    };
   if (!Bcrypt.compareSync(password, user.password))
-    throw new Error("Senha incorreta");
+    throw { status: 404, code: "EMAIL_NOT_FOUND", message: "Senha incorreta" };
 
   const token = JWT.sign(user.toJSON(), process.env.JWT_SECRET, {
     expiresIn: 604800

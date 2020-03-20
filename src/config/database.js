@@ -8,7 +8,11 @@ const connect = async () => {
       useFindAndModify: false
     });
   } catch (error) {
-    throw new Error("Erro ao estabelecer uma conexão com o banco de dados");
+    throw {
+      status: 555,
+      code: "DATABASE_CONNECTION_ERROR",
+      message: "Erro ao estabelecer uma conexão com o banco de dados"
+    };
   }
 };
 
