@@ -19,7 +19,7 @@ const signup = async ctx => {
     throw {
       status: 400,
       code: "PASSWORD_REQUIRED",
-      message: "Password é obrigatório"
+      message: "Senha é obrigatório"
     };
 
   const auth = await AuthService.signup({ data });
@@ -40,7 +40,7 @@ const login = async ctx => {
     throw {
       status: 400,
       code: "PASSWORD_REQUIRED",
-      message: "Password é obrigatório"
+      message: "Senha é obrigatório"
     };
 
   const auth = await AuthService.login({ email, password });
