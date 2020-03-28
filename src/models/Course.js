@@ -1,25 +1,27 @@
 import Mongoose from "mongoose";
 
-const Course = Mongoose.model(
-  "Course",
-  Mongoose.Schema(
-    {
-      name: String,
-      description: String,
-      category: String,
-      tags: Array,
-      trailer: String,
-      summary: String,
-      requirements: String,
-      feedbacks: Array,
-      deleted: Boolean,
-      createdAt: Date,
-      updatedAt: Date
-    },
-    {
-      timestamps: true
-    }
-  )
+import { LessonSchema } from "./Lesson";
+
+export const CourseSchema = Mongoose.Schema(
+  {
+    name: String,
+    description: String,
+    category: String,
+    tags: Array,
+    trailer: String,
+    summary: String,
+    requirements: String,
+    lessons: [LessonSchema],
+    feedbacks: Array,
+    deleted: Boolean,
+    createdAt: Date,
+    updatedAt: Date
+  },
+  {
+    timestamps: true
+  }
 );
+
+const Course = Mongoose.model("Course", CourseSchema);
 
 export default Course;

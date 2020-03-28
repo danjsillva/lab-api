@@ -1,15 +1,14 @@
 import Mongoose from "mongoose";
 
-const Setting = Mongoose.model(
-  "Setting",
-  Mongoose.Schema(
-    {
-      name: String
-    },
-    {
-      timestamps: true
-    }
-  )
+export const SettingSchema = Mongoose.Schema(
+  {
+    name: String
+  },
+  {
+    timestamps: true
+  }
 );
+
+const Setting = Mongoose.model("Setting", SettingSchema);
 
 export default Setting;
