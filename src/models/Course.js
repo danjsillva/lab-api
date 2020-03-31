@@ -13,6 +13,7 @@ export const CourseSchema = Mongoose.Schema(
     requirements: String,
     lessons: [LessonSchema],
     feedbacks: Array,
+    user: { type: Mongoose.Schema.Types.ObjectId, ref: "User" },
     deleted: Boolean,
     createdAt: Date,
     updatedAt: Date

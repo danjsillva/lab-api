@@ -5,6 +5,7 @@ import AuthController from "./controllers/AuthController";
 import SettingController from "./controllers/SettingController";
 import UserController from "./controllers/UserController";
 import CourseController from "./controllers/CourseController";
+import SubscribeController from "./controllers/SubscribeController";
 
 const router = new Router();
 
@@ -28,5 +29,11 @@ router.get("/courses/:id", AuthMiddleware, CourseController.show);
 router.post("/courses", AuthMiddleware, CourseController.store);
 router.patch("/courses/:id", AuthMiddleware, CourseController.update);
 router.delete("/courses/:id", AuthMiddleware, CourseController.destroy);
+
+router.get("/subscribies", AuthMiddleware, SubscribeController.index);
+router.get("/subscribies/:id", AuthMiddleware, SubscribeController.show);
+router.post("/subscribies", AuthMiddleware, SubscribeController.store);
+router.patch("/subscribies/:id", AuthMiddleware, SubscribeController.update);
+router.delete("/subscribies/:id", AuthMiddleware, SubscribeController.destroy);
 
 export default router.routes();
